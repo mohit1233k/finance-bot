@@ -5,7 +5,7 @@ from ingest.ingest import ingest_urls
 from agents.agent import research_query
 from services.market import get_price, top_stocks_for_sector
 from services.intent_llm import detect_sector_and_intent_llm
-
+from agents.unified_agents import run_agent
 router = APIRouter()
 
 
@@ -85,3 +85,13 @@ async def research_auto(payload: dict):
         # research path
         r = research_query(sector, query)
         return {"detected_sector": sector, "intent": intent, "confidence": confidence, "source": source, "result": r}
+    
+
+    
+@router.post("/ask_agent")
+async def ask_agent(payload: dict):
+    query = payload.get("query")
+    if not query:
+        raise HTTPException(status_code=400, detail="Missing query")
+    result = run_agent(query)
+    return {"query": query, "answer": result}

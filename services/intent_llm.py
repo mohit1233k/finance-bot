@@ -6,6 +6,9 @@ from typing import Dict, Optional, Tuple
 from langchain_google_genai import GoogleGenerativeAI
 from langchain.schema import HumanMessage
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Fallback keyword detector (keeps previous behavior in case LLM fails)
 from services.intent import detect_sector_from_query as keyword_detect
 
@@ -43,7 +46,7 @@ def _call_llm(prompt: str, model_name: str = GEMINI_MODEL) -> Optional[str]:
     Call Gemini through LangChain wrapper and return raw text output (string).
     """
     try:
-        llm = GoogleGenerativeAI(model=model_name)
+        llm = GoogleGenerativeAI(model=model_name,api_key=os.getenv("GOOGLE_API_KEY"))
         # Use HumanMessage wrapper for safety with generate()
         resp = llm.generate([[HumanMessage(content=prompt)]])
         # resp.generations is a nested list: generations[0][0].text
