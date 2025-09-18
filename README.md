@@ -3,6 +3,8 @@
 Finance Bot is an AI-powered assistant for financial research, stock discovery, and market analysis. It leverages Google Gemini LLM, LangChain, and custom sector/intent detection to help users explore top stocks, analyze trends, and ingest financial news.
 
 ---
+## Screentshot
+<img width="1135" height="887" alt="image" src="https://github.com/user-attachments/assets/01846480-dda3-44e0-994e-4cf5f61c5530" />
 
 ## Features
 
@@ -23,6 +25,7 @@ Finance Bot is an AI-powered assistant for financial research, stock discovery, 
    ├── frontend.py # Streamlit UI ├── main.py # FastAPI app entrypoint 
    ├── requirements.txt # Python dependencies 
    ├── .env # Environment variables (API keys, config) 
+
 
 
 ---
@@ -60,3 +63,4 @@ Created by mohit kamra
 
 
     
+
